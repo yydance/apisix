@@ -77,7 +77,10 @@ curl http://127.0.0.1:9180/apisix/admin/routes/1 -H 'X-API-KEY: edd1c9f034335f13
     "methods": ["GET"],
     "uri": "/anything*",
     "plugins": {
-        "jwe-decrypt": {}
+        "jwe-decrypt": {
+            "header": "Authorization",
+            "forward_header": "Authorization"
+        }
     },
     "upstream": {
         "type": "roundrobin",
