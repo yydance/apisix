@@ -277,10 +277,11 @@ function _M.body_filter(conf, ctx)
 
     if conf.body then
         ngx.arg[2] = true
+        local val = core.utils.resolve_var(conf.body, ngx.var)
         if conf.body_base64 then
-            ngx.arg[1] = ngx.decode_base64(conf.body)
+            ngx.arg[1] = ngx.decode_base64(val)
         else
-            ngx.arg[1] = conf.body
+            ngx.arg[1] = val
         end
     end
 end
